@@ -1,0 +1,1028 @@
+[
+    {
+        "id": "fb8ac6d1c98daed5",
+        "type": "tab",
+        "label": "myproject",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "02d8b92ce60a64c5",
+        "type": "mqtt out",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "topic": "esp32/led",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "10e78a89.5b4fd5",
+        "x": 820,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "ddec994dc87b305d",
+        "type": "mqtt in",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "topic": "esp32/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "10e78a89.5b4fd5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "a1ccd30068f0b666",
+                "100416d418896bc4",
+                "f30dec01d7b12281",
+                "a025cd0e14db728e",
+                "2795dbf47d268df4"
+            ]
+        ]
+    },
+    {
+        "id": "eb26d4f4bbcc6eb6",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "temp-payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "ff8f588bd2819260",
+        "type": "mqtt in",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "topic": "esp32/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "10e78a89.5b4fd5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "1a0e74cab72d6f60",
+                "5bffb3721152dc7d",
+                "ac743a47e7f20299",
+                "b9c0bae5afa34d5c"
+            ]
+        ]
+    },
+    {
+        "id": "1acdc7556f27b5a2",
+        "type": "ui_switch",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "label": "led",
+        "tooltip": "",
+        "group": "7f82839a5f768626",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "@msg/led",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "on",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 490,
+        "y": 740,
+        "wires": [
+            [
+                "02d8b92ce60a64c5",
+                "634c9d9ecc11719e"
+            ]
+        ]
+    },
+    {
+        "id": "1a0e74cab72d6f60",
+        "type": "ui_gauge",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "group": "7f82839a5f768626",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b3d9",
+            "#0073e6",
+            "#001bd7"
+        ],
+        "seg1": "33",
+        "seg2": "66",
+        "className": "",
+        "x": 680,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a1ccd30068f0b666",
+        "type": "ui_chart",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "group": "7f82839a5f768626",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 530,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5bffb3721152dc7d",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "json-humidity",
+        "func": "var newMsg = {payload: '{\"data\":{\"humidity\": ' + msg.payload + '}}'};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 180,
+        "wires": [
+            [
+                "8c472ee3e77f4356",
+                "e106adcbffd740ae"
+            ]
+        ]
+    },
+    {
+        "id": "8c472ee3e77f4356",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "humid-payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "100416d418896bc4",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "json-temp",
+        "func": "var newMsg = {payload: '{\"data\":{\"temperature\": ' + msg.payload + '}}'};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "eb26d4f4bbcc6eb6",
+                "e106adcbffd740ae"
+            ]
+        ]
+    },
+    {
+        "id": "634c9d9ecc11719e",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "json-led",
+        "func": "var newMsg = {payload: '{\"data\":{\"led\": \"' + msg.payload + '\"}}'};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 800,
+        "wires": [
+            [
+                "977ccc85cb95a02e",
+                "e106adcbffd740ae"
+            ]
+        ]
+    },
+    {
+        "id": "977ccc85cb95a02e",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "led-payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "e106adcbffd740ae",
+        "type": "mqtt out",
+        "z": "fb8ac6d1c98daed5",
+        "name": "Shadow-To-NETPIE2020",
+        "topic": "@shadow/data/update",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "627b7e8fa3fc170d",
+        "x": 1270,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "87571646ed3f0e2f",
+        "type": "mqtt in",
+        "z": "fb8ac6d1c98daed5",
+        "name": "LED-Control-From-NETPIE2020",
+        "topic": "@msg/led",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "627b7e8fa3fc170d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 390,
+        "y": 860,
+        "wires": [
+            [
+                "1acdc7556f27b5a2",
+                "27db539b4b3a7c84"
+            ]
+        ]
+    },
+    {
+        "id": "f30dec01d7b12281",
+        "type": "ui_text",
+        "z": "fb8ac6d1c98daed5",
+        "group": "7f82839a5f768626",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "name": "temperature",
+        "label": "temperature",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "27db539b4b3a7c84",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "3d8ae65d251dd842",
+        "type": "http request",
+        "z": "fb8ac6d1c98daed5",
+        "name": "line notification",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1420,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b93dbb52654af627",
+        "type": "mqtt in",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "topic": "esp32/lux",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "10e78a89.5b4fd5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 240,
+        "y": 460,
+        "wires": [
+            [
+                "1a43159194aa76d1",
+                "a7cf77c66fd5e746",
+                "c1559adf0a2acd93",
+                "00c98c9c3aab2b76"
+            ]
+        ]
+    },
+    {
+        "id": "1a43159194aa76d1",
+        "type": "ui_gauge",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "group": "7f82839a5f768626",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "lux",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b3d9",
+            "#0073e6",
+            "#001bd7"
+        ],
+        "seg1": "33",
+        "seg2": "66",
+        "diff": false,
+        "className": "",
+        "x": 630,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "a7cf77c66fd5e746",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "json-lux",
+        "func": "var newMsg = {payload: '{\"data\":{\"lux\": ' + msg.payload + '}}'};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "e106adcbffd740ae",
+                "f52c17dfc897da20"
+            ]
+        ]
+    },
+    {
+        "id": "f52c17dfc897da20",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "lux-payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c1559adf0a2acd93",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "8800 > lux ",
+        "func": "var lux = msg.payload;\n\nif (8800 > lux   ) {\n    msg.headers = {\n        'content-type': 'application/x-www-form-urlencoded',\n        'Authorization': 'Bearer 1mbvA0Gz1GRgScPuHPUus02zHaru9nwA1aBCvtw9lHv'\n    };\n    //msg.payload = { 'message': 'Temp: ' + temp };\n\n    msg.payload = {\n        'message': 'Warnning!! ค่าความเข้มแสงน้อยเกินไป ค่าความเข้มแสงอยู่ที่ ' + lux+ ' lx'+ '    กรุณาเปิดไฟ',\n        // 'stickerPackageId': 1,\n        // 'stickerId': 9\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 360,
+        "wires": [
+            [
+                "805cf46cca9ca47c"
+            ]
+        ]
+    },
+    {
+        "id": "805cf46cca9ca47c",
+        "type": "http request",
+        "z": "fb8ac6d1c98daed5",
+        "name": "line notification",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1420,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac743a47e7f20299",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "60 > humidity ",
+        "func": "var humidity = msg.payload;\n\nif (60 > humidity ) {\n    msg.headers = {\n        'content-type': 'application/x-www-form-urlencoded',\n        'Authorization': 'Bearer 1mbvA0Gz1GRgScPuHPUus02zHaru9nwA1aBCvtw9lHv'\n    };\n    //msg.payload = { 'message': 'Temp: ' + temp };\n\n    msg.payload = {\n        'message': ' Warnning!! ตอนนี้ค่าความชื้นน้อยเกินไป  ค่าความชื้นอยู่ที่ ' + humidity + ' %',\n        // 'stickerPackageId': 1,\n        // 'stickerId': 7\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 120,
+        "wires": [
+            [
+                "75dd8cb8a271f0c1"
+            ]
+        ]
+    },
+    {
+        "id": "75dd8cb8a271f0c1",
+        "type": "http request",
+        "z": "fb8ac6d1c98daed5",
+        "name": "line notification",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1420,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c1c17a7d82b99d3",
+        "type": "mqtt in",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "topic": "esp32/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "10e78a89.5b4fd5",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 1620,
+        "wires": [
+            [
+                "6cbc82d5972323f8"
+            ]
+        ]
+    },
+    {
+        "id": "6cbc82d5972323f8",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "json-lux",
+        "func": "var newMsg = {payload: '{\"data\":{\"status\": ' + msg.payload + '}}'};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1620,
+        "wires": [
+            [
+                "b4baeda4be4cf438"
+            ]
+        ]
+    },
+    {
+        "id": "b4baeda4be4cf438",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "status-payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "c2a26d8c9e2f171b",
+        "type": "http request",
+        "z": "fb8ac6d1c98daed5",
+        "name": "line notification",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1420,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "00c98c9c3aab2b76",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "lux > 20000 ",
+        "func": "var lux = msg.payload;\n\nif (lux > 20000  ) {\n    msg.headers = {\n        'content-type': 'application/x-www-form-urlencoded',\n        'Authorization': 'Bearer 1mbvA0Gz1GRgScPuHPUus02zHaru9nwA1aBCvtw9lHv'\n    };\n    //msg.payload = { 'message': 'Temp: ' + temp };\n\n    msg.payload = {\n        'message': 'Warnning!! ค่าความเข้มแสงมากเกินไป ค่าความเข้มแสงอยู่ที่ ' + lux + ' lx' + '    กรุณาปิดไฟ',\n        // 'stickerPackageId': 1,\n        // 'stickerId': 9\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 420,
+        "wires": [
+            [
+                "b95bb748ebe751a3"
+            ]
+        ]
+    },
+    {
+        "id": "b95bb748ebe751a3",
+        "type": "http request",
+        "z": "fb8ac6d1c98daed5",
+        "name": "line notification",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1420,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9c0bae5afa34d5c",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "humidity > 80",
+        "func": "var humidity = msg.payload;\n\nif ( humidity > 80) {\n    msg.headers = {\n        'content-type': 'application/x-www-form-urlencoded',\n        'Authorization': 'Bearer 1mbvA0Gz1GRgScPuHPUus02zHaru9nwA1aBCvtw9lHv'\n    };\n    //msg.payload = { 'message': 'Temp: ' + temp };\n\n    msg.payload = {\n        'message': ' Warnning!! ตอนนี้ค่าความชื้นมากเกินไป ค่าความชื้นอยู่ที่ ' + humidity + ' %',\n        // 'stickerPackageId': 1,\n        // 'stickerId': 7\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 180,
+        "wires": [
+            [
+                "bc377c98a55d241e"
+            ]
+        ]
+    },
+    {
+        "id": "bc377c98a55d241e",
+        "type": "http request",
+        "z": "fb8ac6d1c98daed5",
+        "name": "line notification",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1420,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc7e330f1080a7c5",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "group name",
+        "func": "var newMsg = { payload: '{\"data\":{\"group\": G24}}' };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 1540,
+        "wires": [
+            [
+                "bdccd3cb864f6cf7"
+            ]
+        ]
+    },
+    {
+        "id": "bdccd3cb864f6cf7",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "group-payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "fb474921813e8e85",
+        "type": "switch",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a025cd0e14db728e",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "temp < 23",
+        "func": "var temp = msg.payload;\n\nif ( temp < 23 ) {\n    msg.headers = {\n        'content-type': 'application/x-www-form-urlencoded',\n        'Authorization': 'Bearer 1mbvA0Gz1GRgScPuHPUus02zHaru9nwA1aBCvtw9lHv'\n    };\n    //msg.payload = { 'message': 'Temp: ' + temp };\n\n    msg.payload = {\n        'message': 'Warnning!! ค่าอุณหภูมิต่ำเกินไป ค่าอุณหภูมิอยู่ที่ ' + temp+' องศาเซลเซียล' ,\n        // 'stickerPackageId': 1,\n        // 'stickerId': 6\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 240,
+        "wires": [
+            [
+                "c2a26d8c9e2f171b"
+            ]
+        ]
+    },
+    {
+        "id": "2795dbf47d268df4",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "temp > 26",
+        "func": "var temp = msg.payload;\n\nif (temp > 26  ) {\n    msg.headers = {\n        'content-type': 'application/x-www-form-urlencoded',\n        'Authorization': 'Bearer 1mbvA0Gz1GRgScPuHPUus02zHaru9nwA1aBCvtw9lHv'\n    };\n    //msg.payload = { 'message': 'Temp: ' + temp };\n\n    msg.payload = {\n        'message': 'Warnning!! ค่าอุณหภูมิสูงเกินไป ค่าอุณหภูมิอยู่ที่ ' + temp +'  องศาเซลเซียล',\n        // 'stickerPackageId': 1,\n        // 'stickerId': 6\n    };\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 300,
+        "wires": [
+            [
+                "3d8ae65d251dd842"
+            ]
+        ]
+    },
+    {
+        "id": "eae973c498b98652",
+        "type": "mqtt out",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "topic": "esp32/servo",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "10e78a89.5b4fd5",
+        "x": 830,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "af97f435f037cf4d",
+        "type": "ui_switch",
+        "z": "fb8ac6d1c98daed5",
+        "name": "",
+        "label": "servo",
+        "tooltip": "",
+        "group": "7f82839a5f768626",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "@msg/servo",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "on",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 490,
+        "y": 1040,
+        "wires": [
+            [
+                "eae973c498b98652",
+                "7d00f29456ca92d6"
+            ]
+        ]
+    },
+    {
+        "id": "7d00f29456ca92d6",
+        "type": "function",
+        "z": "fb8ac6d1c98daed5",
+        "name": "json-servo",
+        "func": "var newMsg = {payload: '{\"data\":{\"servo\": \"' + msg.payload + '\"}}'};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 1100,
+        "wires": [
+            [
+                "e449d58b08acf941",
+                "e106adcbffd740ae"
+            ]
+        ]
+    },
+    {
+        "id": "e449d58b08acf941",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "led-payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "0376e2d2002618a5",
+        "type": "mqtt in",
+        "z": "fb8ac6d1c98daed5",
+        "name": "Servo-Control-From-NETPIE2020",
+        "topic": "@msg/servo",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "627b7e8fa3fc170d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 390,
+        "y": 1160,
+        "wires": [
+            [
+                "af97f435f037cf4d",
+                "87325d5fe782b58c"
+            ]
+        ]
+    },
+    {
+        "id": "87325d5fe782b58c",
+        "type": "debug",
+        "z": "fb8ac6d1c98daed5",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "819ee32f9d581475",
+        "type": "ui_spacer",
+        "z": "fb8ac6d1c98daed5",
+        "name": "spacer",
+        "group": "7f82839a5f768626",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "10e78a89.5b4fd5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "088863ca-c616-4303-b05c-85f2989d550f",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "esp32/humidity",
+        "birthQos": "0",
+        "birthRetain": "true",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7f82839a5f768626",
+        "type": "ui_group",
+        "name": "TH-Dashboard",
+        "tab": "7a3f494adff2b85b",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "627b7e8fa3fc170d",
+        "type": "mqtt-broker",
+        "name": "mydevices",
+        "broker": "broker.netpie.io",
+        "port": "1883",
+        "clientid": "088863ca-c616-4303-b05c-85f2989d550f",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7a3f494adff2b85b",
+        "type": "ui_tab",
+        "name": "NodeRED-NETPIE",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
