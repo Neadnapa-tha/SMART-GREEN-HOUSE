@@ -63,7 +63,7 @@
 - ปรับสภาพแวดล้อมให้เหมาะสมกับการเจริญเติบโตของเมล่อน
 
 ## ตัวอย่างรูปเเบบการเชื่อมต่ออุปกรณ์
-<img width="759" alt="Screenshot 2568-06-12 at 17 25 27" src="https://github.com/user-attachments/assets/bf63ed44-615f-4450-8787-5a09b1d299be" />
+<img width="746" alt="Screenshot 2568-06-12 at 17 25 27" src="https://github.com/user-attachments/assets/bf63ed44-615f-4450-8787-5a09b1d299be" />
 
 ## NEPIE DASHBOARD
 <img width="746" alt="Screenshot 2568-06-12 at 17 28 33" src="https://github.com/user-attachments/assets/5541c4a3-e2b6-4519-b890-4f2ea635ee47" />
